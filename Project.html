@@ -19,6 +19,11 @@
       moreText.style.display = "inline";
   }
 }
+    function changeTheme()
+    {
+        var element = document.body;
+        element.classList.toggle("dark-mode");
+    }
 
   </script>
 </head>
@@ -27,8 +32,8 @@
   <div class="column" width = "25%">
     <h2>Geethi</h2>
 	<p><button type = "submit"> Bengali </button></p>
-	<p><button type = "submit"> Bengali </button></p>
-    <p><button type = "submit"> English </button></p>
+	<!-- <p><button type = "submit"> Bengali </button></p> -->
+  <p><button type = "submit"> English </button></p>
 	<p><button type = "submit"> Hindi </button></p>
 	<p><button type = "submit"> Kannada </button></p>
 	<p><button type = "submit"> Marathi </button></p>
@@ -38,6 +43,11 @@
 	<p><button type = "submit"> Telugu </button></p>
 	</div>
 	<input type="text" name="search" placeholder="Search..">
+    <!-- <button onclick="changeTheme();" style="background-color: gray;">Toggle Theme</button> -->
+    <label class="switch">
+      <input type="checkbox" onclick="changeTheme();">
+      <span class="slider round"></span>
+    </label>
   <div class="column1" width = "75%">
 	<button type = "submit"> Action </button>
 	<button type = "submit"> Comedies </button>
