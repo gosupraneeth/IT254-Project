@@ -1,0 +1,74 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - language
+  - genre
+  - mood
+
+entities:
+  - language
+  - mood
+  - genre
+
+slots:
+  language:
+    type: text
+    influence_conversation: true
+  mood:
+    type: text
+    influence_conversation: true
+  genre:
+    type: text
+    influence_conversation: true
+
+responses:
+  utter_greet:
+  - text: Hey! Iam Bot. I can assist you to find movies. Please choose one of the following language of movies you wanted to go for?
+
+  utter_select_mood:
+  - text: I understand you like to go for {language} movies. Please enter what is your mood.
+
+  utter_select_genre:
+  - text: I understand you in {mood} mood. I suggest these movies. If you don't like them, Please select the genre.
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, to give suggestions about movies to you."
+
+actions:
+  - find_language_types
+  - find_mood
+  - find_genre
+  - suggest_movies
+  - utter_greet
+  - utter_cheer_up
+  - utter_did_that_help
+  - utter_happy
+  - utter_goodbye
+  - utter_iambot
+  - utter_select_mood
+  - utter_select_genre
+  
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
