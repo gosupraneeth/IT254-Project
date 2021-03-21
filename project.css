@@ -78,7 +78,7 @@ body { background-color : black;
     color: white;
     text-align:left;
     width: 75%;
-    border: 3px solid black;
+    /* border: 3px solid black; */
 	margin-top:25px;
 	margin-left:70px;
   }
@@ -112,3 +112,102 @@ body { background-color : black;
   display: none;
 }
 
+.switch {
+  position: relative;
+  /* display: inline-block; */
+  width: 40px;
+  height: 20px;
+  float : right;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 0px;
+  bottom: 0px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+.dark-mode
+{
+    background-color: white;
+    color: black;
+    
+}
+.dark-mode .column1 button, .dark-mode #myBtn{
+    color: black;
+    padding: 4px;
+    /* background-color: rgb(207, 206, 206); */
+    background-color: white;
+    border-radius: 10px;
+
+}
+ .dark-mode button:hover{
+   background-color: rgb(206, 203, 203);
+ }
+ .dark-mode #myBtn:hover{
+  background-color: rgb(206, 203, 203);
+ }
+ .dark-mode button:active{
+  background-color: rgb(206, 203, 203);
+  border: none;
+}
+
+.dark-mode .content, .dark-mode .review{
+  color: black;
+}
+
+.dark-mode .card:hover{
+  box-shadow: 0 8px 16px 0 rgba(22, 19, 19, 0.2);
+}
