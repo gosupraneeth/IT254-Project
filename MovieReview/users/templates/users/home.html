@@ -63,7 +63,6 @@
             localStorage.setItem('darktheme', false);
         }
     document.addEventListener('DOMContentLoaded',()=>{
-        console.log(localStorage.getItem('darktheme'));
         if(localStorage.getItem('darktheme')=='true'){
             document.getElementById('flexSwitchCheckChecked').checked = true;
             localStorage.setItem('darktheme', false);
@@ -107,9 +106,11 @@
 
     }
 
-    var x = window.matchMedia("(min-width: 1000px)")
-    sidenav(x)
-    x.addListener(sidenav)
+    window.addEventListener('resize',()=>{
+        var x = window.matchMedia("(min-width: 1000px)");
+        sidenav(x);
+        x.addListener(sidenav);
+    });
 </script>
 <link rel="stylesheet" href="{% static 'users/home.css' %}">
 <link rel="stylesheet" href="{% static 'users/chatbot.css' %}">
@@ -171,6 +172,21 @@
         });
     });
 </script>
+<script>
+    var count =0
+    var temp = 0
+    function set_image(){
+        images = document.querySelectorAll('.chat-buttons > .chat-button > div > span');
+        for (i = 0; i < images.length; i++) {
+            if(images[i].childElementCount==0)
+            {
+                images[i].innerHTML = images[i].textContent || images[i].innerHTML
+            }
+        }
+    }
+    var timer1 = setInterval(set_image,10);
+</script>
+
 {% endblock %}
 
 {% block body %}
@@ -207,15 +223,16 @@
 <div style="width: 97%;height:100%;display: inline-flex; flex-direction: row; margin: 1%;">
     <div class="sidebar">
         <h2 style="font-family: Orbitron;">Language</h2>
-        <p><button type="submit" class="lang_btn"> Bengali </button></p>
-        <p><button type="submit" class="lang_btn"> English </button></p>
         <p><button type="submit" class="lang_btn"> Hindi </button></p>
-        <p><button type="submit" class="lang_btn"> Kannada </button></p>
-        <p><button type="submit" class="lang_btn"> Marathi </button></p>
-        <p><button type="submit" class="lang_btn"> Malayalam </button></p>
-        <p><button type="submit" class="lang_btn"> Punjabi </button></p>
-        <p><button type="submit" class="lang_btn"> Tamil</button></p>
-        <p><button type="submit" class="lang_btn"> Telugu </button></p>
+        <p><button type="submit" class="lang_btn"> Marathi</button></p>
+        <p><button type="submit" class="lang_btn"> English </button></p>
+        <p><button type="submit" class="lang_btn"> French </button></p>
+        <p><button type="submit" class="lang_btn"> German</button></p>
+        <p><button type="submit" class="lang_btn"> Spanish </button></p>
+        <p><button type="submit" class="lang_btn"> Russian </button></p>
+        <p><button type="submit" class="lang_btn"> Italian </button></p>
+        <p><button type="submit" class="lang_btn"> Japanese</button></p>
+        <p><button type="submit" class="lang_btn"> Chinese</button></p>
     </div>
     <div class="content">
         <div class="top-bar">
@@ -230,22 +247,21 @@
         </div>
         <nav class="big-nav navbar navbar-expand-lg navbar-dark ">
             <div class="container-fluid" style="display: inline-flex; flex-direction: row; flex-wrap: nowrap;">
-                <a class="navbar-brand" href="#" style="font-family: Orbitron;">GERNE</a>
+                <a class="navbar-brand" href="#" style="font-family: Orbitron;">GENRE</a>
                 <div class="navbar-nav">
                     <div class="menu" id="menu">
-                        <a class="nav-link " aria-current="page" href="#">Home</a>
                         <a class="nav-link" href="#">Action</a>
-                        <a class="nav-link" href="#">Comedies</a>
-                        <a class="nav-link " href="#">Crime</a>
+                        <a class="nav-link" href="#">Adventure</a>
+                        <a class="nav-link " href="#">DarkMovies</a>
                         <a class="nav-link" href="#">Documentaries</a>
                         <a class="nav-link" href="#">Drama</a>
                         <a class="nav-link " href="#">Fantasy</a>
-                        <a class="nav-link" href="#">Horror</a>
+                        <a class="nav-link" href="#">Musical</a>
                         <a class="nav-link" href="#">Romance</a>
                         <a class="nav-link " href="#">Scifi</a>
                         <a class="nav-link " href="#">Thriller</a>
-                        <a class="nav-link " href="#">Under18</a>
-                        <a class="nav-link " href="#">18+</a>
+                        <a class="nav-link " href="#">Comedy</a>
+                        <a class="nav-link " href="#">History</a>
                     </div>
                 </div>
             </div>
@@ -255,15 +271,16 @@
 
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <p><button type="submit" class="lang_btn"> Bengali </button></p>
-            <p><button type="submit" class="lang_btn"> English </button></p>
             <p><button type="submit" class="lang_btn"> Hindi </button></p>
-            <p><button type="submit" class="lang_btn"> Kannada </button></p>
-            <p><button type="submit" class="lang_btn"> Marathi </button></p>
-            <p><button type="submit" class="lang_btn"> Malayalam </button></p>
-            <p><button type="submit" class="lang_btn"> Punjabi </button></p>
-            <p><button type="submit" class="lang_btn"> Tamil</button></p>
-            <p><button type="submit" class="lang_btn"> Telugu </button></p>
+            <p><button type="submit" class="lang_btn"> Marathi</button></p>
+            <p><button type="submit" class="lang_btn"> English </button></p>
+            <p><button type="submit" class="lang_btn"> French </button></p>
+            <p><button type="submit" class="lang_btn"> German</button></p>
+            <p><button type="submit" class="lang_btn"> Spanish </button></p>
+            <p><button type="submit" class="lang_btn"> Russian </button></p>
+            <p><button type="submit" class="lang_btn"> Italian </button></p>
+            <p><button type="submit" class="lang_btn"> Japanese</button></p>
+            <p><button type="submit" class="lang_btn"> Chinese</button></p>
         </div>
         {% include 'users/card_layout.html' %}
 

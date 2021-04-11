@@ -36,6 +36,9 @@ def login_view(request):
         'logincard':True
     })
 
+def prefer(request):
+    return render(request, "users/prefer.html")
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -45,7 +48,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('loginindex')
+            return redirect('prefer')
     else:
         form = SignUpForm()
     return render(request, 'users/home.html', {
