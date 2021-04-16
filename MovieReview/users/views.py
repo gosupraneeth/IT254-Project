@@ -1,9 +1,13 @@
 from django.contrib.auth import login, authenticate, logout
 from users.forms import SignUpForm
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
+from users.models import Movies , Languages ,Genres
+import random as rd
+from users.utils import *
+
 
 # Create your views here.
 
@@ -59,3 +63,11 @@ def signup(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+def getdata(request):
+    start = int(request.GET.get("start") or 0)
+    end = int(request.GET.get("end") or (start + 9))
+    cards = movies_data_load(start,end)
+    return JsonResponse({
+        "cards" : cards,
+    })

@@ -187,6 +187,59 @@
     var timer1 = setInterval(set_image,10);
 </script>
 
+<script>
+    document.addEventListener('DOMContententLoaded',load);
+        const quantity = 5;
+        let counter =1;
+        function check() {
+            listElm = document.querySelector('.content');
+            if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight - 1) {
+                //alert('hi');
+                load();
+            }
+        }
+        window.addEventListener('scroll',check);
+
+        // Load next set of posts
+        function load() {
+
+            // Set start and end post numbers, and update counter
+            const start = counter;
+            const end = start + quantity - 1;
+            counter = end + 1;
+            console.log(`start='${start}' end='${end}' %}`);
+            // Get new posts and add posts
+            fetch(`/getdata?start=${start}&end=${end}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.cards.forEach(add_post);
+                })
+        };
+
+        // Add a new post with given contents to DOM
+        function add_post(contents) {
+            const card = document.createElement('div');
+            let mid = contents.mid;
+            let language = contents.language
+            let genre = contents.genre
+            let title = contents.title
+            let year = contents.year
+            let duration = contents.duration
+            let director = contents.director
+            let writer = contents.writer
+            let production = contents.production
+            let actors = contents.actors
+            let description = contents.description
+            let rating = contents.rating
+            console.log(mid)
+            //card.className = 'movie-card';
+            card.innerHTML = `{% include 'users/card_layout.html'  with  mid="${mid}" language="${language}" genre="${genre}" title="${title}" year="${year}" duration="${duration}" director="${director}" writer="${writer}" production="${production}" actors="${actors}" description="${description}" rating="${rating}" %}`;
+            // Add post to DOM
+            document.querySelector('.cards-box').append(card);
+        };
+</script>
+
+
 {% endblock %}
 
 {% block body %}
@@ -282,13 +335,9 @@
             <p><button type="submit" class="lang_btn"> Japanese</button></p>
             <p><button type="submit" class="lang_btn"> Chinese</button></p>
         </div>
-        {% include 'users/card_layout.html' %}
-
-        {% include 'users/card_layout.html' %}
-
-        {% include 'users/card_layout.html' %}
-
-        {% include 'users/card_layout.html' %}
+        <div class="cards-box"  onscroll="check()">
+            <!--<img class="loading" src="https://check-business.co.uk/static/img/loading.gif" />-->
+        </div>
 
     </div>
 </div>
