@@ -239,6 +239,8 @@ font-family: Montserrat Alternates;
 .cards-box{
   text-align: center;
   width: 100%;
+  overflow: scroll;
+  scroll-behavior: smooth;
 }
 .movie-card:hover {
   box-shadow: 0 8px 16px 0 rgba(235, 202, 202, 0.2);
@@ -289,7 +291,7 @@ font-family: Montserrat Alternates;
 
 .dark-mode .sidebar{
   box-shadow: 4px 20px 47px 0 rgb(0 0 0 / 10%);
-  background-color: #dc3545;
+  background-color: #fb6e77 ;
 }
 .dark-mode .lang_btn:focus, .dark-mode .lang_btn:hover{
   box-shadow:  0 0 8px 4px #ae2020, 0 0 8px 4px #9e1b1bb8;
