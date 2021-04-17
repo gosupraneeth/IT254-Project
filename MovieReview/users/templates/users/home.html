@@ -195,7 +195,28 @@
             listElm = document.querySelector('.cards-box');
             if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight - 1) {
                 //alert('hi');
-                load();
+                loading = document.querySelectorAll('.building');
+                for (i = 0; i < loading.length; i++) {
+                    document.querySelector('.cards-box').removeChild(loading[i]);
+                }
+                loading = document.createElement('div');
+                loading.style = "font-size:12px"
+                loading.id = "building";
+                loading.classList.add("building")
+                loading.innerHTML = `<div id = "blocks">
+                                        <div class = "b" id = "b1"></div>
+                                        <div class = "b" id = "b2"></div>
+                                        <div class = "b" id = "b3"></div>
+                                        <div class = "b" id = "b4"></div>
+                                        </div>`;
+                document.querySelector('.cards-box').appendChild(loading);
+                setTimeout(() => {
+                    loading = document.querySelectorAll('.building');
+                    for(i=0;i<loading.length;i++){
+                        document.querySelector('.cards-box').removeChild(loading[i]);
+                    }
+                    load();
+                }, 1200);
             }
         }
         window.addEventListener('scroll',check);
@@ -237,6 +258,7 @@
             // Add post to DOM
             document.querySelector('.cards-box').append(card);
         };
+        load();
 </script>
 
 

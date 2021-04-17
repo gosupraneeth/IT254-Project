@@ -291,8 +291,12 @@ font-family: Montserrat Alternates;
 
 .dark-mode .sidebar{
   box-shadow: 4px 20px 47px 0 rgb(0 0 0 / 10%);
-  background-color: #fb6e77 ;
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+			background-size: 400% 400%;
+			animation: Gradient 15s ease infinite;
+  /*background-color: #fb6e77 ;*/
 }
+
 .dark-mode .lang_btn:focus, .dark-mode .lang_btn:hover{
   box-shadow:  0 0 8px 4px #ae2020, 0 0 8px 4px #9e1b1bb8;
 }
@@ -321,3 +325,117 @@ font-family: Montserrat Alternates;
 .dark-mode nav{
   background-color: #000000;
 }
+
+
+
+#building {
+  display: flex;
+  width: 35em;
+  margin: auto;
+}
+#blocks {
+  margin: auto;
+}
+#caption {
+  padding-left: 0.5em;
+  margin: auto;
+  font-size: 2.5em;
+}
+.b {
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background-size: 200% 200%;
+	animation: Gradient 15s ease infinite;
+  border: 0.3em solid #89f2f2;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 0.5em;
+  margin: 1em;
+  position: relative;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+#b1 {
+  animation-name: b1;
+}
+#b2 {
+  animation-name: b2;
+  margin-left: 5.25em;
+}
+#b3 {
+  animation-name: b3;
+  margin-top: -6em;
+}
+#b4 {
+  animation-name: b4;
+  margin-left: 7.25em;
+}
+@keyframes b1 {
+  0% {
+    left: 2.25em;
+    transform: rotate(0deg);
+}
+50% {
+    left: 4.25em;
+    bottom: 0em;
+    transform: rotate(90deg);
+}
+100% {
+    left: 4.25em;
+    bottom: -6.125em;
+    transform: rotate(90deg);
+}
+}
+@keyframes b2 {
+  50% {
+    bottom: 0em;
+  }
+  100% {
+    bottom: -6.125em;
+  }
+}
+@keyframes b3 {
+  50% {
+    top: 0em;
+  }
+  100% {
+    top: -6.125em;
+  }
+}
+@keyframes b4 {
+  0% {
+    left: -4em;
+    transform: rotate(0deg);
+  }
+  50% {
+    left: -6.25em;
+    top: 0em;
+    transform: rotate(90deg);
+  }
+  100% {
+    left: -6.25em;
+    top: -6.125em;
+    transform: rotate(90deg);
+  }
+}
+@media(max-width: 400px) {
+  #building {
+    width: 100%
+  }
+  #caption {
+    display: none;
+  }
+}
+
+
+@keyframes Gradient {
+			0% {
+    		background-position: 0% 50%;
+		}
+		50% {
+    		background-position: 100% 50%;
+		}
+		100% {
+    		background-position: 0% 50%;
+		}
+		}
