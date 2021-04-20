@@ -172,9 +172,71 @@
         });
     });
 </script>
+
 <script>
-    var count =0
-    var temp = 0
+    
+    function load_val_data(val) {
+        MOOD = ["happy", "sad", "upset", "worry", "excited", "silly", "frustrated", "scared", "angry"];
+        GENRE = ["Action", "Adventure", "Darkmovies",  "Drama", "Fantasy", "Musical", "Romance", "Sci-Fi", "Thriller", "Comedy", "History"];
+        LANGUAGE = ["Hindi","Marathi","English","French","German","Spanish","Russian","Italian","Japanese","Chinese"];
+        if(LANGUAGE.includes(val)){
+            localStorage.setItem('lang', val);
+            console.log(val);
+        }
+        if (MOOD.includes(val)) {
+            var mood_div = document.createElement('div');
+            mood_div.classList.add('mood-div');
+            if(document.querySelector('.mood-div')!=null)
+            {
+                document.querySelector('.mood-div').remove();
+            }
+            var lang = localStorage.getItem('lang');
+            document.querySelector('.chats').append(mood_div);
+            setTimeout(() => {
+                fetch(`/getchat_mood?mood=${val}&lang=${lang}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.cards.forEach(add_chat_post);
+                    })
+            }, 10);
+        }
+        if (GENRE.includes(val)) {
+            var genre_div = document.createElement('div');
+            genre_div.classList.add('genre-div');
+            if(document.querySelector('.genre-div')!=null)
+            {
+                document.querySelector('.genre-div').remove();
+            }
+            var lang = localStorage.getItem('lang');
+            document.querySelector('.chats').append(genre_div);
+            setTimeout(() => {
+                fetch(`/getchat_genre?genre=${val}&count=${6}&lang=${lang}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.cards.forEach(add_chat_post_genre);
+                    })
+            }, 10);
+        }
+        console.log(val);
+    };
+    function add_chat_post(contents) {
+            var chat_card = document.createElement('div');
+            chat_card.classList.add('chat-card');
+            chat_card.innerHTML = `<a href="#" style="text-decoration:None;color:White">${contents.title} <br> Rating:${contents.rating}<a>`;
+            document.querySelector('.mood-div').append(chat_card);
+        };
+    function add_chat_post_genre(contents) {
+            var chat_card = document.createElement('div');
+            chat_card.classList.add('chat-card');
+            chat_card.innerHTML = `<a href="#" style="text-decoration:None;color:White">${contents.title} <br> Rating:${contents.rating}<a>`;
+            document.querySelector('.genre-div').append(chat_card);
+        };
+
+</script>
+
+<script>
+    var count =1;
+    var temp = 0;
     function set_image(){
         images = document.querySelectorAll('.chat-buttons > .chat-button > div > span');
         for (i = 0; i < images.length; i++) {
@@ -183,8 +245,34 @@
                 images[i].innerHTML = images[i].textContent || images[i].innerHTML
             }
         }
-    }
-    var timer1 = setInterval(set_image,10);
+            document.querySelectorAll('.chat-button').forEach((btn) => {
+                if("chat-button-disabled" == btn.classList[1]){
+                    btn.removeAttribute("onclick");
+                }
+                else{
+                    bl = btn.querySelector('div > span');
+                    if (bl.childElementCount == 0) {
+                        btn.setAttribute("onclick", "load_val_data(this.querySelector('div > span').innerHTML)");
+                    }
+                    else {
+                        btn.setAttribute("onclick", "load_val_data(this.querySelector('div > span >img').alt)");
+                    }
+                }
+               
+            });
+    };
+
+    function count_ele(){
+        block_chats = document.querySelector('.chats');
+        if(block_chats.childElementCount!=count){
+            count = block_chats.childElementCount;
+            set_image();
+        }
+    };
+    document.addEventListener('DOMContentLoaded',()=>{
+        var timer1 = setInterval(set_image, 10);    
+    });
+    
 </script>
 
 <script>
@@ -218,7 +306,7 @@
                     load();
                 }, 1200);
             }
-        }
+        };
         window.addEventListener('scroll',check);
 
         // Load next set of posts
@@ -260,6 +348,8 @@
         };
         load();
 </script>
+
+
 
 
 {% endblock %}
@@ -328,7 +418,6 @@
                         <a class="nav-link" href="#">Action</a>
                         <a class="nav-link" href="#">Adventure</a>
                         <a class="nav-link " href="#">DarkMovies</a>
-                        <a class="nav-link" href="#">Documentaries</a>
                         <a class="nav-link" href="#">Drama</a>
                         <a class="nav-link " href="#">Fantasy</a>
                         <a class="nav-link" href="#">Musical</a>

@@ -73,6 +73,29 @@
     width: 60px;
     height: 60px;
 }
+.mood-div{
+    text-align: center;
+    justify-content: center;
+}
+.genre-div{
+    text-align: center;
+    justify-content: center;
+}
+
+.chat-card{
+    display: inline-flex;
+    font-size: xx-small;
+    padding: 2px;
+    margin: 1%;
+    background-color: #ff8918;
+    background-size: 400% 400%;
+    animation: Gradient 15s ease infinite;
+    border-radius: 3px;
+    color: white;
+    box-shadow: 4px 20px 47px 0 rgb(0 0 0 / 30%);
+}
+
+
 
 .dark-mode .chat-container .chatroom{
     background-color:hsl(0deg 0% 100%);

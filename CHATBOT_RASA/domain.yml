@@ -36,7 +36,10 @@ responses:
   - text: I understand you like to go for {language} movies. Please enter what is your mood.
 
   utter_select_genre:
-  - text: I understand you in {mood} mood. I suggest these movies. If you don't like them, Please select the genre.
+  - text: I understand you in {mood} mood. I suggest above movies. If you don't like them, Please select the below genre.
+
+  utter_thanks:
+  - text: "Here are the top movies of {genre} genre.\nThank you!"
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"

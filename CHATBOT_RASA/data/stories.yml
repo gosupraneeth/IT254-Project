@@ -44,4 +44,4 @@ stories:
   - intent: genre
     entities:
     - genre: "crime"
-  - action: suggest_movies
+  - action: utter_thanks

@@ -3,15 +3,16 @@ version: "2.0"
 nlu:
 - intent: language
   examples: |
-    - [telugu](language)
+    - [french](language)
     - [hindi](language)
     - [english](language)
-    - [bengali](language)
-    - [kannada](language)
-    - [tamil](language)
-    - [malayalam](language)
-    - [marati](language)
-    - [panjabi](language)
+    - [spanish](language)
+    - [italian](language)
+    - [russian](language)
+    - [japanese](language)
+    - [marathi](language)
+    - [chinese](language)
+    - [german](language)
     - I wanted to go for [telugu](language) movies
     - I am looking for [telugu](language) movies
     - I am palnning to book [English](language) movies
@@ -20,17 +21,17 @@ nlu:
 - intent: genre
   examples: |
     - [action](genre)
-    - [comedy](genre)
-    - [crime](genre)
+    - [adventure](genre)
+    - [dark movies](genre)
     - [documentries](genre)
     - [drama](genre)
     - [fantasy](genre)
-    - [horror](genre)
+    - [musical](genre)
     - [romance](genre)
     - [sci-fi](genre)
     - [thriller](genre)
-    - [under 18](genre)
-    - [18+](genre)
+    - [comedy](genre)
+    - [history](genre)
 
 - intent: mood
   examples: |
@@ -119,7 +120,6 @@ nlu:
     - I am disappointed
     - super sad
     - I'm so sad
-    - sad
     - very sad
     - unhappy
     - not good

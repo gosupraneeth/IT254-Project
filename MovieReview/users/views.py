@@ -71,3 +71,20 @@ def getdata(request):
     return JsonResponse({
         "cards" : cards,
     })
+
+def getchat_mood(request):
+    mood = request.GET.get("mood") or "happy"
+    lang = request.GET.get("lang") or "English"
+    cards = movies_data_load_mood(mood,lang)
+    return JsonResponse({
+        "cards" : cards,
+    })
+
+def getchat_genre(request):
+    genre = request.GET.get("genre") or "Action"
+    num = int(request.GET.get("count") or 5)
+    lang = request.GET.get("lang") or "English"
+    cards = movies_data_load_genre(genre,lang,num)
+    return JsonResponse({
+        "cards" : cards,
+    })
