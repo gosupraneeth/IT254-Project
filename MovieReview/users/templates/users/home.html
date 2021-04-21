@@ -222,16 +222,49 @@
     function add_chat_post(contents) {
             var chat_card = document.createElement('div');
             chat_card.classList.add('chat-card');
-            chat_card.innerHTML = `<a href="#" style="text-decoration:None;color:White">${contents.title} <br> Rating:${contents.rating}<a>`;
+            chat_card.innerHTML = `<a href="#" onclick="get_single_card('${contents.mid}')" style="text-decoration:None;color:White">${contents.title} <br> Rating:${contents.rating}<a>`;
             document.querySelector('.mood-div').append(chat_card);
         };
     function add_chat_post_genre(contents) {
             var chat_card = document.createElement('div');
             chat_card.classList.add('chat-card');
-            chat_card.innerHTML = `<a href="#" style="text-decoration:None;color:White">${contents.title} <br> Rating:${contents.rating}<a>`;
+            chat_card.innerHTML = `<a href="#" onclick="get_single_card('${contents.mid}')" style="text-decoration:None;color:White">${contents.title} <br> Rating:${contents.rating}<a>`;
             document.querySelector('.genre-div').append(chat_card);
         };
 
+</script>
+
+<script>
+    function get_single_card(mid){
+        //document.querySelectorAll('.cards-box')
+        fetch(`/get_single_card?mid=${mid}`)
+            .then(response => response.json())
+            .then(data => {
+                data.cards.forEach(add_single_post);
+            })
+    };
+
+    function add_single_post(contents) {
+        const card = document.createElement('div');
+        let mid = contents.mid;
+        let language = contents.language
+        let genre = contents.genre
+        let title = contents.title
+        let year = contents.year
+        let duration = contents.duration
+        let director = contents.director
+        let writer = contents.writer
+        let production = contents.production
+        let actors = contents.actors
+        let description = contents.description
+        let rating = contents.rating
+        console.log(mid)
+        //card.className = 'movie-card';
+        card.innerHTML = `{% include 'users/card_layout.html'  with  mid="${mid}" language="${language}" genre="${genre}" title="${title}" year="${year}" duration="${duration}" director="${director}" writer="${writer}" production="${production}" actors="${actors}" description="${description}" rating="${rating}" %}`;
+        // Add post to DOM
+        document.querySelector('.cards-box').innerHTML = '';
+        document.querySelector('.cards-box').append(card);
+    };
 </script>
 
 <script>
@@ -580,5 +613,3 @@
     };
 </script>
 {% endblock %}
-
-</html>

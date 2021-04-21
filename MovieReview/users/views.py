@@ -88,3 +88,13 @@ def getchat_genre(request):
     return JsonResponse({
         "cards" : cards,
     })
+
+def get_single_card(request):
+    mid = request.GET.get("mid")
+    card = dict()
+    make_card_dict(card,Movies.objects.get(mid=mid))
+    cards=list()
+    cards.append(card)
+    return JsonResponse({
+        "cards" : cards,
+    })

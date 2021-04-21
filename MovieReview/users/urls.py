@@ -11,4 +11,5 @@ urlpatterns = [
     path('getdata',views.getdata,name="getdata"),
     path('getchat_mood',views.getchat_mood,name="getchat_mood"),
     path('getchat_genre',views.getchat_genre,name="getchat_genre"),
+    path('get_single_card',views.get_single_card,name="get_single_card"),
 ]
