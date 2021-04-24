@@ -29,16 +29,16 @@
         </script>
         
         <script>
-            var languages = new Set();
+            var genres = new Set();
             document.addEventListener('click', () => {
-                lang = document.querySelectorAll('.lang');
-                languages.clear();
-                for (i = 0; i < lang.length; i++) {
-                    if (lang[i].checked == true) {
-                        languages.add(lang[i])
+                genres = document.querySelectorAll('.genre');
+                genres.clear();
+                for (i = 0; i < genre.length; i++) {
+                    if (genre[i].checked == true) {
+                        genres.add(genre[i])
                     }
                 }
-                console.log(languages);
+                console.log(genres);
             });
         </script>
 {% endblock %}
@@ -48,57 +48,63 @@
     <div>
         <div class="lang-div">
             <input type="checkbox" class="lang " id="lang1" name="lang1">
-            <label for="lang1">German</label>
+            <label for="lang1">Action</label>
         </div>
         <div class="lang-div">
             <input type="checkbox" class="lang " id="lang2" name="lang2">
-            <label for="lang2">हिन्दी</label>
+            <label for="lang2">Adventure</label>
         </div>
         <div class="lang-div">
             <input type="checkbox" class="lang " id="lang3" name="lang3">
-            <label for="lang3">French</label>
+            <label for="lang3">DarkMovies</label>
         </div>
         <div class="lang-div">
             <input type="checkbox" class="lang " id="lang4" name="lang4">
-            <label for="lang4">Spanish</label>
+            <label for="lang4">Drama</label>
         </div>
+
         <div class="lang-div">
             <input type="checkbox" class="lang " id="lang5" name="lang5">
-            <label for="lang5">English</label>
+            <label for="lang5">Fantasy</label>
         </div>
         <div class="lang-div">
             <input type="checkbox" class="lang " id="lang6" name="lang6">
-            <label for="lang6">मराठी</label>
+            <label for="lang6">Musical</label>
         </div>
         <div class="lang-div">
             <input type="checkbox" class="lang " id="lang7" name="lang7">
-            <label for="lang7">Russian</label>
+            <label for="lang7">Romance</label>
         </div>
         <div class="lang-div">
             <input type="checkbox" class="lang " id="lang8" name="lang8">
-            <label for="lang8">Italian</label>
+            <label for="lang8">Sci-fi</label>
         </div>
 
         <div class="lang-div">
             <input type="checkbox" class="lang " id="lang9" name="lang9">
-            <label for="lang9">Japanese</label>
+            <label for="lang9">Thriller</label>
         </div>
 		
 		<div class="lang-div">
             <input type="checkbox" class="lang " id="lang9" name="lang9">
-            <label for="lang9">Chinese</label>
+            <label for="lang9">Comedy</label>
         </div>
 		
 		
+		<div class="lang-div">
+            <input type="checkbox" class="lang " id="lang10" name="lang9">
+            <label for="lang10">History</label>
+        </div>
+		
 		
     </div>
 
     <div class="wrap">
-        <a href="{% url 'prefer_genre' %}" class="button">Skip</a>
+        <a href="{% url 'home' %}" class="button">Skip</a>
     </div>
 
     <div class="wrap">
-        <a href="{% url 'prefer_genre' %}" class="button">Next</a>
+        <a href="{% url 'home' %}" class="button">Next</a>
     </div>
 </div>
 {% endblock %}

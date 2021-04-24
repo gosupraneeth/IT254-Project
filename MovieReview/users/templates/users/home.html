@@ -420,7 +420,7 @@
 
 <div style="width: 97%;height:100%;display: inline-flex; flex-direction: row; margin: 1%;">
     <div class="sidebar">
-        <h2 style="font-family: Orbitron;">Language</h2>
+        <h2 style="font-family: Serif;">LANGUAGE</h2>
         <p><button type="submit" class="lang_btn"> Hindi </button></p>
         <p><button type="submit" class="lang_btn"> Marathi</button></p>
         <p><button type="submit" class="lang_btn"> English </button></p>
@@ -435,8 +435,9 @@
     <div class="content">
         <div class="top-bar">
             <span class="threeline" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
-            <input type="text" id="search" name="search" placeholder="Search..">
-            <a class="btn btn-danger me-2" type="button" href="{% url 'login' %}">SignIn</a>
+            <form action="{% url 'search' %}" method="get">
+			<input type="text" id="search" name="search" placeholder="Search.."></form>
+            <a class="btn btn-danger me-2" type="button" href="{% url 'login' %}">Sign in</a>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked
                     onclick="changeTheme();">
@@ -445,7 +446,7 @@
         </div>
         <nav class="big-nav navbar navbar-expand-lg navbar-dark ">
             <div class="container-fluid" style="display: inline-flex; flex-direction: row; flex-wrap: nowrap;">
-                <a class="navbar-brand" href="#" style="font-family: Orbitron;">GENRE</a>
+                <a class="navbar-brand" href="#" style="font-family: Serif;">GENRE</a>
                 <div class="navbar-nav">
                     <div class="menu" id="menu">
                         <a class="nav-link" href="#">Action</a>

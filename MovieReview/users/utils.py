@@ -121,6 +121,71 @@ def movies_data_load_genre(genre,lang,num):
     sort_cards(genre_cards,genre_s_cards)
     return genre_s_cards[:num]
 
+def  movies_data_genre(genre,start,end) : 
+    genre_cards = list()  
+    genre_s_cards = list()
+    if(genre=='Comedy'):
+        for obj in Genres.objects.get(g_name='Family').movies.all() :
+            genre_card = dict()
+            make_card_dict(genre_card,obj)
+            genre_cards.append(genre_card)
+    if genre=='Adventure':
+        for obj in Genres.objects.get(g_name='War').movies.all() :
+            genre_card = dict()
+            make_card_dict(genre_card,obj)
+            genre_cards.append(genre_card)
+    if genre == 'Musical':
+        for obj in Genres.objects.get(g_name='Music').movies.all() :
+            genre_card = dict()
+            make_card_dict(genre_card,obj)
+            genre_cards.append(genre_card)
+    if genre == 'Thriller':
+        for obj in Genres.objects.get(g_name='Mystery').movies.all() :
+            genre_card = dict()
+            make_card_dict(genre_card,obj)
+            genre_cards.append(genre_card)
+    if genre == 'Darkmovies':
+        for obj in Genres.objects.get(g_name='Crime').movies.all() :
+            genre_card = dict()
+            make_card_dict(genre_card,obj)
+            genre_cards.append(genre_card)
+        for obj in Genres.objects.get(g_name='Horror').movies.all() :
+            genre_card = dict()
+            make_card_dict(genre_card,obj)
+            genre_cards.append(genre_card)
+        genre = 'FilmNoir'
+    for obj in Genres.objects.get(g_name=genre).movies.all() :
+        genre_card = dict()
+        make_card_dict(genre_card,obj)
+        genre_cards.append(genre_card)
+    
+    genre_cards = [dict(t) for t in {tuple(d.items()) for d in genre_cards}]
+    sort_cards(genre_cards,genre_s_cards)
+    return genre_s_cards[start:end]
+
+
+def movies_data_language(language,start,end) : 
+    language_cards = list()
+    language_s_cards = list()
+    for obj in Languages.objects.get(l_name=language).movies.all() :
+        language_card = dict()
+        make_card_dict(language_card,obj)
+        language_cards.append(language_card)   
+   
+    language_cards = [dict(t) for t in {tuple(d.items()) for d in language_cards}]
+    sort_cards(language_cards,language_s_cards)
+    return language_s_cards[start:end]
+    
+def movies_data_search(search) :
+    movies_cards = list()
+    movies_s_cards = list()
+    obj = Movies.objects.get(title=search)
+    movies_card = dict()
+    make_card_dict(movies_card,obj)
+    movies_cards.append(movies_card)   
+    return movies_cards
+    
+
 
 m_objects = Movies.objects.all()
 cards = list()

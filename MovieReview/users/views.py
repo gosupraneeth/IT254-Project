@@ -42,6 +42,13 @@ def login_view(request):
 
 def prefer(request):
     return render(request, "users/prefer.html")
+ 
+def prefer_genre(request) :
+    return render(request, "users/prefer_genre.html")
+
+def home(request) : 
+    return render(request, "users/home.html")
+
 
 def signup(request):
     if request.method == 'POST':
@@ -88,6 +95,32 @@ def getchat_genre(request):
     return JsonResponse({
         "cards" : cards,
     })
+    
+def search_bar(request) : 
+    search = request.GET.get("search")
+    cards = movies_data_search(search)
+    return JsonResponse({
+        "cards" : cards,
+    })
+    
+def get_genre(request) : 
+    genre = request.GET.get("genre")
+    start = int(request.GET.get("start") or 0)
+    end = int(request.GET.get("end") or (start + 9))
+    cards = movies_data_genre(genre,start,end)
+    return JsonResponse({
+        "cards" : cards,
+    })
+    
+def get_language(request,name):
+    language = name
+    start = int(request.GET.get("start") or 0)
+    end = int(request.GET.get("end") or (start + 9))
+    cards = movies_data_language(language,start,end)
+    return JsonResponse({
+        "cards" : cards,
+    })
+    
 
 def get_single_card(request):
     mid = request.GET.get("mid")

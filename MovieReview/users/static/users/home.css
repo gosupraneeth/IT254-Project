@@ -12,23 +12,27 @@ body{
 .navbar{
     display: inline-flex;
     width: 100%;
+	
+	
 }
 .navbar-nav{
     width: 100%;
     overflow: hidden;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .nav-link{
   display: flex;
   flex-direction: row;
-    margin-right: 1rem;
-    margin-left: 1rem;
+    margin-right: 20px;
+    margin-left: 20px;
     font-size: 17px;
     font-family: Montserrat Alternates;
     flex-wrap: nowrap;
 }
 @media (min-width: 992px){
-.navbar-expand-lg .navbar-nav .nav-link {
+.navbar-expand-lg  .navbar .nav-link {
     margin-right: 2rem;
     margin-left: 2rem;
 }
@@ -112,13 +116,13 @@ font-family: Montserrat Alternates;
     border-radius: 3px; 
     outline: none;
  }
- #search {
-     align-items: right;
+.search {
+  align-items: right;
   float : right;
   width: 130px;
   border: 2px solid #20ADAE;
   border-radius: 4px;
-  color: white;
+  color: black;
   font-size: 16px;
   background-color: black;
   background: url('search.png');
@@ -129,11 +133,13 @@ font-family: Montserrat Alternates;
   transition: width 0.4s ease-in-out;
   margin-right: 0!important;
 }
-#search:focus {
+.search:focus {
   width: 75%;
   border: 2px solid #20ADAE;
   outline: none;
 }
+
+
 
 .content{
     display: inline-flex;
@@ -324,6 +330,28 @@ font-family: Montserrat Alternates;
 }
 .dark-mode nav{
   background-color: #000000;
+}
+.dark-mode.search {
+  align-items: right;
+  float : right;
+  width: 130px;
+  border: 2px solid #20ADAE;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  background-color: black;
+  background: url('search.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  margin-right: 0!important;
+}
+.dark-mode .search:focus {
+  width: 75%;
+  border: 2px solid #20ADAE;
+  outline: none;
 }
 
 
