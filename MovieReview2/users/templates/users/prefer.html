@@ -1,0 +1,116 @@
+{% extends 'users/layout.html' %}
+
+{% load static %}
+
+{%block head%}
+<title>Language preference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Georgia' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Montserrat\Alternates' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=PT\ Sans' rel='stylesheet'>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'users/prefer.css' %}">
+
+<script>
+    colors = ['red', 'green', '#bbbb27', 'blue', 'orange']
+    document.addEventListener('DOMContentLoaded', () => {
+        buttons = document.querySelectorAll('label');
+        for (i = 0; i < buttons.length; i++) {
+            buttons[i].style.backgroundColor = colors[i % colors.length];
+            //buttons[i].style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        }
+    })
+</script>
+
+<script>
+    var languages = new Set();
+    document.addEventListener('click', () => {
+        lang = document.querySelectorAll('.lang');
+        languages.clear();
+        for (i = 0; i < lang.length; i++) {
+            if (lang[i].checked == true) {
+                languages.add(lang[i].name)
+            }
+        }
+        console.log(languages);
+    });
+</script>
+<script>
+    function fetch_mat(val){
+        fetch(`/incr_priority?name=${val}&num=5`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);
+            })
+    };
+    function incr_preferece() {
+        languages.forEach(fetch_mat);      
+    }
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="opac">
+    <div>
+        <div class="lang-div">
+            <input type="checkbox" class="lang " id="lang1" name="German">
+            <label for="lang1">German</label>
+        </div>
+        <div class="lang-div">
+            <input type="checkbox" class="lang " id="lang2" name="Hindi">
+            <label for="lang2">हिन्दी</label>
+        </div>
+        <div class="lang-div">
+            <input type="checkbox" class="lang " id="lang3" name="French">
+            <label for="lang3">French</label>
+        </div>
+        <div class="lang-div">
+            <input type="checkbox" class="lang " id="lang4" name="Spanish">
+            <label for="lang4">Spanish</label>
+        </div>
+        <div class="lang-div">
+            <input type="checkbox" class="lang " id="lang5" name="English">
+            <label for="lang5">English</label>
+        </div>
+        <div class="lang-div">
+            <input type="checkbox" class="lang " id="lang6" name="Marathi">
+            <label for="lang6">मराठी</label>
+        </div>
+        <div class="lang-div">
+            <input type="checkbox" class="lang " id="lang7" name="Russian">
+            <label for="lang7">Russian</label>
+        </div>
+        <div class="lang-div">
+            <input type="checkbox" class="lang " id="lang8" name="Italian">
+            <label for="lang8">Italian</label>
+        </div>
+
+        <div class="lang-div">
+            <input type="checkbox" class="lang " id="lang9" name="Japanese">
+            <label for="lang9">Japanese</label>
+        </div>
+
+        <div class="lang-div">
+            <input type="checkbox" class="lang " id="lang10" name="Chinese">
+            <label for="lang10">Chinese</label>
+        </div>
+
+
+
+    </div>
+
+    <div class="wrap">
+        <a href="{% url 'loginindex' %}" class="button">Skip</a>
+    </div>
+
+    <div class="wrap">
+        <a href="{% url 'prefer_genre' %}" class="button" onclick="incr_preferece()">Next</a>
+    </div>
+</div>
+{% endblock %}
