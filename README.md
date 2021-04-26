@@ -1,6 +1,16 @@
 # IT254-Project
 Mini Project for the WEB DEV IT254
 
+## Installations 
+
+Install pip for your system 
+
+Then run the below code to install the requirements for the project
+
+````
+pip install -r requirements.txt
+````
+
 ## How to run chatbot
 
 To run the RASA Chatbot use the below command in **CHATBOT_RASA** directory
@@ -21,4 +31,5 @@ Run the below command to start the local server *http://127.0.0.1:8000/* in the 
 ````python
 python manage.py runserver
 ````
->All the above commands should be run parallelly to use all the about features together.
+After starting this server, open the above link in browser to view the application.
+>All the above commands should be run parallelly to use all the above features together and for full application.
