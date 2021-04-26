@@ -29,9 +29,11 @@
             -webkit-font-smoothing: antialiased;
             margin-top: 10px;
             font-family: Arial, Helvetica, sans-serif;
+            /* color: gray; */
             text-align: center;
             box-shadow: 4px 20px 47px 0 rgb(0 0 0 / 31%);
             border: none;
+            /*background-image: url('https://freepngimg.com/thumb/cool_designs/27097-6-cool-designs-hd-thumb.png');*/
             background-size: contain;
             font-size: larger;
             font-weight: 530;

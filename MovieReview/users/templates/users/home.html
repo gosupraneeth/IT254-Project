@@ -15,31 +15,13 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-<script>
-    function myFunction() {
-        var dots;
-        var moreText;
-        var btnText;
-        var parent;
-        document.querySelectorAll('.myBtn').forEach((button) => {
-            button.onclick = function () {
-                parent = this.parentNode;
-                dots = parent.getElementsByClassName('dots')[0];
-                moreText = parent.getElementsByClassName("more")[0];
-                btnText = parent.getElementsByClassName("myBtn")[0];
 
-                if (dots.style.display === "none") {
-                    dots.style.display = "inline";
-                    btnText.innerHTML = "Read more";
-                    moreText.style.display = "none";
-                } else {
-                    dots.style.display = "none";
-                    btnText.innerHTML = "Read less";
-                    moreText.style.display = "inline";
-                }
-            }
-        });
-    }
+<link rel="stylesheet" href="{% static 'users/home.css' %}">
+<link rel="stylesheet" href="{% static 'users/chatbot.css' %}">
+<link rel="stylesheet" href="{% static 'users/signin.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js">
 </script>
 <style>
     .nav-link {
@@ -55,312 +37,41 @@
         margin: 1%;
     }
 </style>
-
 <script>
-    if (!localStorage.getItem('darktheme')) {
+function add_single_post(contents) {
+const card = document.createElement('div');
+if (contents.message != undefined) {
+card.innerHTML = contents.message;
+}
+else {
+let mid = contents.mid;
+let language = contents.language;
+let genre = contents.genre;
+let title = contents.title;
+let year = contents.year;
+let duration = contents.duration;
+let director = contents.director;
+let writer = contents.writer;
+let production = contents.production;
+let actors = contents.actors;
+let description = contents.description;
+let rating = contents.rating;
+console.log(mid);
+//card.className = 'movie-card';
+card.innerHTML = `{% include 'users/card_layout.html' with mid="${mid}" language="${language}" genre="${genre}" title="${title}" year="${year}" duration="${duration}" director="${director}" writer="${writer}" production="${production}" actors="${actors}" description="${description}" rating="${rating}" %}`;
+}
 
-            // If not, set the counter to 0 in local storage
-            localStorage.setItem('darktheme', false);
-        }
-    document.addEventListener('DOMContentLoaded',()=>{
-        if(localStorage.getItem('darktheme')=='true'){
-            document.getElementById('flexSwitchCheckChecked').checked = true;
-            localStorage.setItem('darktheme', false);
-        }else{
-            document.getElementById('flexSwitchCheckChecked').checked = false;
-            localStorage.setItem('darktheme', true);
-        }
-        //var element = document.body;
-        //element.classList.add("dark-mode");
-        changeTheme();
-    });
+// Add post to DOM
+document.querySelector('.cards-box').innerHTML = '';
+document.querySelector('.cards-box').append(card);
+};
 
-    function changeTheme() {
-        let theme = localStorage.getItem('darktheme');
-        var setbool;
-        if(theme == "true")
-        {
-            setbool = false;
-            var element = document.body;
-            element.classList.add("dark-mode");
-        }
-        else{
-            setbool = true;
-            var element = document.body;
-            element.classList.remove("dark-mode");
-        }
-        localStorage.setItem('darktheme', setbool);
-    }
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-    }
-
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-    }
-
-    function sidenav(x) {
-        if (x.matches) {
-            closeNav();
-        }
-
-    }
-
-    window.addEventListener('resize',()=>{
-        var x = window.matchMedia("(min-width: 1000px)");
-        sidenav(x);
-        x.addListener(sidenav);
-    });
-</script>
-<link rel="stylesheet" href="{% static 'users/home.css' %}">
-<link rel="stylesheet" href="{% static 'users/chatbot.css' %}">
-<link rel="stylesheet" href="{% static 'users/signin.css' %}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-<link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js">
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        var current = null;
-        document.querySelector('.username').addEventListener('focus', function () {
-            if (current) current.pause();
-            current = anime({
-                targets: 'path',
-                strokeDashoffset: {
-                    value: 0,
-                    duration: 700,
-                    easing: 'easeOutQuart'
-                },
-                strokeDasharray: {
-                    value: '443 1386',
-                    duration: 700,
-                    easing: 'easeOutQuart'
-                }
-            });
-        });
-        document.querySelector('.password').addEventListener('focus', function (e) {
-            if (current) current.pause();
-            current = anime({
-                targets: 'path',
-                strokeDashoffset: {
-                    value: -555,
-                    duration: 700,
-                    easing: 'easeOutQuart'
-                },
-                strokeDasharray: {
-                    value: '440 1386',
-                    duration: 700,
-                    easing: 'easeOutQuart'
-                }
-            });
-        });
-        document.querySelector('.login_submit').addEventListener('focus', function (e) {
-            if (current) current.pause();
-            current = anime({
-                targets: 'path',
-                strokeDashoffset: {
-                    value: -1300,
-                    duration: 500,
-                    easing: 'easeOutQuart'
-                },
-                strokeDasharray: {
-                    value: '420 1786',
-                    duration: 700,
-                    easing: 'easeOutQuart'
-                }
-            });
-        });
-    });
-</script>
-
-<script>
-    
-    function load_val_data(val) {
-        MOOD = ["happy", "sad", "upset", "worry", "excited", "silly", "frustrated", "scared", "angry"];
-        GENRE = ["Action", "Adventure", "Darkmovies",  "Drama", "Fantasy", "Musical", "Romance", "Sci-Fi", "Thriller", "Comedy", "History"];
-        LANGUAGE = ["Hindi","Marathi","English","French","German","Spanish","Russian","Italian","Japanese","Chinese"];
-        if(LANGUAGE.includes(val)){
-            localStorage.setItem('lang', val);
-            console.log(val);
-        }
-        if (MOOD.includes(val)) {
-            var mood_div = document.createElement('div');
-            mood_div.classList.add('mood-div');
-            if(document.querySelector('.mood-div')!=null)
-            {
-                document.querySelector('.mood-div').remove();
-            }
-            var lang = localStorage.getItem('lang');
-            document.querySelector('.chats').append(mood_div);
-            setTimeout(() => {
-                fetch(`/getchat_mood?mood=${val}&lang=${lang}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        data.cards.forEach(add_chat_post);
-                    })
-            }, 10);
-        }
-        if (GENRE.includes(val)) {
-            var genre_div = document.createElement('div');
-            genre_div.classList.add('genre-div');
-            if(document.querySelector('.genre-div')!=null)
-            {
-                document.querySelector('.genre-div').remove();
-            }
-            var lang = localStorage.getItem('lang');
-            document.querySelector('.chats').append(genre_div);
-            setTimeout(() => {
-                fetch(`/getchat_genre?genre=${val}&count=${6}&lang=${lang}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        data.cards.forEach(add_chat_post_genre);
-                    })
-            }, 10);
-        }
-        console.log(val);
-    };
-    function add_chat_post(contents) {
-            var chat_card = document.createElement('div');
-            chat_card.classList.add('chat-card');
-            chat_card.innerHTML = `<a href="#" onclick="get_single_card('${contents.mid}')" style="text-decoration:None;color:White">${contents.title} <br> Rating:${contents.rating}<a>`;
-            document.querySelector('.mood-div').append(chat_card);
-        };
-    function add_chat_post_genre(contents) {
-            var chat_card = document.createElement('div');
-            chat_card.classList.add('chat-card');
-            chat_card.innerHTML = `<a href="#" onclick="get_single_card('${contents.mid}')" style="text-decoration:None;color:White">${contents.title} <br> Rating:${contents.rating}<a>`;
-            document.querySelector('.genre-div').append(chat_card);
-        };
-
-</script>
-
-<script>
-    function get_single_card(mid){
-        //document.querySelectorAll('.cards-box')
-        fetch(`/get_single_card?mid=${mid}`)
-            .then(response => response.json())
-            .then(data => {
-                data.cards.forEach(add_single_post);
-            })
-    };
-
-    function add_single_post(contents) {
+    function add_post(contents) {
         const card = document.createElement('div');
-        let mid = contents.mid;
-        let language = contents.language
-        let genre = contents.genre
-        let title = contents.title
-        let year = contents.year
-        let duration = contents.duration
-        let director = contents.director
-        let writer = contents.writer
-        let production = contents.production
-        let actors = contents.actors
-        let description = contents.description
-        let rating = contents.rating
-        console.log(mid)
-        //card.className = 'movie-card';
-        card.innerHTML = `{% include 'users/card_layout.html'  with  mid="${mid}" language="${language}" genre="${genre}" title="${title}" year="${year}" duration="${duration}" director="${director}" writer="${writer}" production="${production}" actors="${actors}" description="${description}" rating="${rating}" %}`;
-        // Add post to DOM
-        document.querySelector('.cards-box').innerHTML = '';
-        document.querySelector('.cards-box').append(card);
-    };
-</script>
-
-<script>
-    var count =1;
-    var temp = 0;
-    function set_image(){
-        images = document.querySelectorAll('.chat-buttons > .chat-button > div > span');
-        for (i = 0; i < images.length; i++) {
-            if(images[i].childElementCount==0)
-            {
-                images[i].innerHTML = images[i].textContent || images[i].innerHTML
-            }
+        if (contents.message != undefined) {
+            card.innerHTML = contents.message;
         }
-            document.querySelectorAll('.chat-button').forEach((btn) => {
-                if("chat-button-disabled" == btn.classList[1]){
-                    btn.removeAttribute("onclick");
-                }
-                else{
-                    bl = btn.querySelector('div > span');
-                    if (bl.childElementCount == 0) {
-                        btn.setAttribute("onclick", "load_val_data(this.querySelector('div > span').innerHTML)");
-                    }
-                    else {
-                        btn.setAttribute("onclick", "load_val_data(this.querySelector('div > span >img').alt)");
-                    }
-                }
-               
-            });
-    };
-
-    function count_ele(){
-        block_chats = document.querySelector('.chats');
-        if(block_chats.childElementCount!=count){
-            count = block_chats.childElementCount;
-            set_image();
-        }
-    };
-    document.addEventListener('DOMContentLoaded',()=>{
-        var timer1 = setInterval(set_image, 10);    
-    });
-    
-</script>
-
-<script>
-    document.addEventListener('DOMContententLoaded',load);
-        const quantity = 5;
-        let counter =1;
-        function check() {
-            listElm = document.querySelector('.cards-box');
-            if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight - 1) {
-                //alert('hi');
-                loading = document.querySelectorAll('.building');
-                for (i = 0; i < loading.length; i++) {
-                    document.querySelector('.cards-box').removeChild(loading[i]);
-                }
-                loading = document.createElement('div');
-                loading.style = "font-size:12px"
-                loading.id = "building";
-                loading.classList.add("building")
-                loading.innerHTML = `<div id = "blocks">
-                                        <div class = "b" id = "b1"></div>
-                                        <div class = "b" id = "b2"></div>
-                                        <div class = "b" id = "b3"></div>
-                                        <div class = "b" id = "b4"></div>
-                                        </div>`;
-                document.querySelector('.cards-box').appendChild(loading);
-                setTimeout(() => {
-                    loading = document.querySelectorAll('.building');
-                    for(i=0;i<loading.length;i++){
-                        document.querySelector('.cards-box').removeChild(loading[i]);
-                    }
-                    load();
-                }, 1200);
-            }
-        };
-        window.addEventListener('scroll',check);
-
-        // Load next set of posts
-        function load() {
-
-            // Set start and end post numbers, and update counter
-            const start = counter;
-            const end = start + quantity - 1;
-            counter = end + 1;
-            console.log(`start='${start}' end='${end}' %}`);
-            // Get new posts and add posts
-            fetch(`/getdata?start=${start}&end=${end}`)
-                .then(response => response.json())
-                .then(data => {
-                    data.cards.forEach(add_post);
-                })
-        };
-
-        // Add a new post with given contents to DOM
-        function add_post(contents) {
-            const card = document.createElement('div');
+        else {
             let mid = contents.mid;
             let language = contents.language
             let genre = contents.genre
@@ -377,12 +88,11 @@
             //card.className = 'movie-card';
             card.innerHTML = `{% include 'users/card_layout.html'  with  mid="${mid}" language="${language}" genre="${genre}" title="${title}" year="${year}" duration="${duration}" director="${director}" writer="${writer}" production="${production}" actors="${actors}" description="${description}" rating="${rating}" %}`;
             // Add post to DOM
-            document.querySelector('.cards-box').append(card);
-        };
-        load();
+        }
+        document.querySelector('.cards-box').append(card);
+    };
 </script>
-
-
+<script src="{% static 'users/main.js' %}"></script>
 
 
 {% endblock %}
@@ -420,24 +130,26 @@
 
 <div style="width: 97%;height:100%;display: inline-flex; flex-direction: row; margin: 1%;">
     <div class="sidebar">
-        <h2 style="font-family: Serif;">LANGUAGE</h2>
-        <p><button type="submit" class="lang_btn"> Hindi </button></p>
-        <p><button type="submit" class="lang_btn"> Marathi</button></p>
-        <p><button type="submit" class="lang_btn"> English </button></p>
-        <p><button type="submit" class="lang_btn"> French </button></p>
-        <p><button type="submit" class="lang_btn"> German</button></p>
-        <p><button type="submit" class="lang_btn"> Spanish </button></p>
-        <p><button type="submit" class="lang_btn"> Russian </button></p>
-        <p><button type="submit" class="lang_btn"> Italian </button></p>
-        <p><button type="submit" class="lang_btn"> Japanese</button></p>
-        <p><button type="submit" class="lang_btn"> Chinese</button></p>
+        <h2 style="font-family: Orbitron;">Language</h2>
+        <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Hindi </button></p>
+        <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Marathi</button></p>
+        <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> English </button></p>
+        <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> French </button></p>
+        <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> German</button></p>
+        <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Spanish </button></p>
+        <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Russian </button></p>
+        <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Italian </button></p>
+        <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Japanese</button></p>
+        <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Chinese</button></p>
     </div>
     <div class="content">
         <div class="top-bar">
             <span class="threeline" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
-            <form action="{% url 'search' %}" method="get">
-			<input type="text" id="search" name="search" placeholder="Search.."></form>
-            <a class="btn btn-danger me-2" type="button" href="{% url 'login' %}">Sign in</a>
+            <form class="searchbar" onsubmit="return search_post()" method="dialog">
+                <input type="text" id="search" name="search" placeholder="Search..">
+                <input type="submit" style="display: none;" value="submit" onclick="search_post()">
+            </form>
+            <a class="btn btn-danger me-2" type="button" href="{% url 'login' %}">SignIn</a>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked
                     onclick="changeTheme();">
@@ -446,20 +158,20 @@
         </div>
         <nav class="big-nav navbar navbar-expand-lg navbar-dark ">
             <div class="container-fluid" style="display: inline-flex; flex-direction: row; flex-wrap: nowrap;">
-                <a class="navbar-brand" href="#" style="font-family: Serif;">GENRE</a>
+                <a class="navbar-brand" href="#" style="font-family: Orbitron;">GENRE <a class="nav-link" style="color: white;" href="#" onfocus="remove_all()">Home</a></a>
                 <div class="navbar-nav">
                     <div class="menu" id="menu">
-                        <a class="nav-link" href="#">Action</a>
-                        <a class="nav-link" href="#">Adventure</a>
-                        <a class="nav-link " href="#">DarkMovies</a>
-                        <a class="nav-link" href="#">Drama</a>
-                        <a class="nav-link " href="#">Fantasy</a>
-                        <a class="nav-link" href="#">Musical</a>
-                        <a class="nav-link" href="#">Romance</a>
-                        <a class="nav-link " href="#">Scifi</a>
-                        <a class="nav-link " href="#">Thriller</a>
-                        <a class="nav-link " href="#">Comedy</a>
-                        <a class="nav-link " href="#">History</a>
+                        <a class="nav-link" href="#" onclick="toogle_active(this)">Action</a>
+                        <a class="nav-link" href="#" onclick="toogle_active(this)">Adventure</a>
+                        <a class="nav-link " href="#" onclick="toogle_active(this)">DarkMovies</a>
+                        <a class="nav-link" href="#" onclick="toogle_active(this)">Drama</a>
+                        <a class="nav-link " href="#" onclick="toogle_active(this)">Fantasy</a>
+                        <a class="nav-link" href="#" onclick="toogle_active(this)">Musical</a>
+                        <a class="nav-link" href="#" onclick="toogle_active(this)">Romance</a>
+                        <a class="nav-link " href="#" onclick="toogle_active(this)">Scifi</a>
+                        <a class="nav-link " href="#" onclick="toogle_active(this)">Thriller</a>
+                        <a class="nav-link " href="#" onclick="toogle_active(this)">Comedy</a>
+                        <a class="nav-link " href="#" onclick="toogle_active(this)">History</a>
                     </div>
                 </div>
             </div>
@@ -469,21 +181,32 @@
 
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <p><button type="submit" class="lang_btn"> Hindi </button></p>
-            <p><button type="submit" class="lang_btn"> Marathi</button></p>
-            <p><button type="submit" class="lang_btn"> English </button></p>
-            <p><button type="submit" class="lang_btn"> French </button></p>
-            <p><button type="submit" class="lang_btn"> German</button></p>
-            <p><button type="submit" class="lang_btn"> Spanish </button></p>
-            <p><button type="submit" class="lang_btn"> Russian </button></p>
-            <p><button type="submit" class="lang_btn"> Italian </button></p>
-            <p><button type="submit" class="lang_btn"> Japanese</button></p>
-            <p><button type="submit" class="lang_btn"> Chinese</button></p>
+            <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Hindi </button></p>
+            <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Marathi</button></p>
+            <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> English </button></p>
+            <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> French </button></p>
+            <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> German</button></p>
+            <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Spanish </button></p>
+            <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Russian </button></p>
+            <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Italian </button></p>
+            <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Japanese</button></p>
+            <p><button type="submit" class="lang_btn" onclick="toogle_active(this)"> Chinese</button></p>
         </div>
-        <div class="cards-box"  onscroll="check()">
+        <div class="cards-box" onscroll="check()">
             <!--<img class="loading" src="https://check-business.co.uk/static/img/loading.gif" />-->
         </div>
 
+    </div>
+</div>
+
+<div id="loading" class="modal">
+    <div id="building" style="font-size: 12px;" class="building">
+        <div id="blocks">
+            <div class="b" id="b1"></div>
+            <div class="b" id="b2"></div>
+            <div class="b" id="b3"></div>
+            <div class="b" id="b4"></div>
+        </div>
     </div>
 </div>
 
@@ -498,8 +221,8 @@
             <a class="btn me-2 deactive" href="{% url 'signup' %}"
                 onclick="document.getElementById('login-card').style.display='none'">SIGN
                 UP</a>
-            <a href="{% url 'home' %}"><span onclick="document.getElementById('login-card').style.display='none'" class="close"
-                title="Close Modal">&times;</span></a>
+            <a href="{% url 'home' %}"><span onclick="document.getElementById('login-card').style.display='none'"
+                    class="close" title="Close Modal">&times;</span></a>
         </div>
 
 
@@ -512,11 +235,11 @@
                 </linearGradient>
             </defs>
             <path class="path"
-                d="m 19,175.00016 439.99984,-3.2e-4 c 0,0 25.99263,0.79932 20.00016,79.00016 0.008,35.20084 -49.00016,30 -110.00016,30 h -339.99984 c 0,-0.0205 -25,4.01348 -27,20.5 0,50.48652 10,50.5 25,50.5 h 310 c 0,0 20,-0.99604 20,-25 0,-25.00396 -20,-25 -20,-25 h -130 c 0,0 -20,1.71033 -20,25 0,27.00396 20,25 10,25 h 128.57143"/>
+                d="m 19,175.00016 439.99984,-3.2e-4 c 0,0 25.99263,0.79932 20.00016,79.00016 0.008,35.20084 -49.00016,30 -110.00016,30 h -339.99984 c 0,-0.0205 -25,4.01348 -27,20.5 0,50.48652 10,50.5 25,50.5 h 310 c 0,0 20,-0.99604 20,-25 0,-25.00396 -20,-25 -20,-25 h -130 c 0,0 -20,1.71033 -20,25 0,27.00396 20,25 10,25 h 128.57143" />
         </svg>
         <div class="container2">
             <label class="label" for="username"><b>Username</b></label>
-            <input autofocus class="username"  type="text" placeholder="Enter Username" name="username" required >
+            <input autofocus class="username" type="text" placeholder="Enter Username" name="username" required>
 
             <label class="label" for="password"><b>Password</b></label>
             <input class="password" type="password" placeholder="Enter Password" name="password" required>
@@ -551,10 +274,10 @@
             <a class="btn me-2 active" href="{% url 'signup' %}"
                 onclick="document.getElementById('sign-card').style.display='flex', document.getElementById('login-card').style.display='none'">SIGN
                 UP</a>
-            <a href="{% url 'home' %}"><span onclick="document.getElementById('sign-card').style.display='none'; " class="close"
-                title="Close Modal">&times;</span></a>
+            <a href="{% url 'home' %}"><span onclick="document.getElementById('sign-card').style.display='none'; "
+                    class="close" title="Close Modal">&times;</span></a>
         </div>
-        
+
 
         <div class="container2">
             {% for field in form %}
@@ -577,7 +300,7 @@
         <div class="container2" style="background-color: #474A59;">
             <a href="{% url 'home' %}" onclick="document.getElementById('sign-card').style.display='none'"
                 class="btn btn-danger cancelbtn">Cancel</a>
-            
+
         </div>
     </form>
 </div>

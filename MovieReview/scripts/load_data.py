@@ -1,4 +1,4 @@
-from users.models import Movies , Languages ,Genres
+from users.models import Movies , Languages ,Genres, User,PriorityGenre,PriorityLanguage
 import csv
 import numpy as np
 import pandas as pd
@@ -26,7 +26,7 @@ def save_genres(data):
     for movie in data:
         Movie = Movies.objects.get(mid=movie[1])
         for ge in movie[5].split(', '):
-            if ge in ['Comedy','Family','War','Adventure','Music','Musical','Mystery','Thriller','Drama','Romanace','Action','Crime','Horror','Film-Noir','Fantasy','Sci-Fi','History']:
+            if ge in ['Comedy','Family','War','Adventure','Music','Musical','Mystery','Thriller','Drama','Romance','Action','Crime','Horror','Film-Noir','Fantasy','Sci-Fi','History']:
                 Genre = Genres.objects.get(g_name=ge)
                 Genre.movies.add(Movie)
 
@@ -40,13 +40,23 @@ def save_languages(data):
                 Language.movies.add(Movie)
 
 def add_genres():
-    for ge in ['Comedy','Family','War','Adventure','Music','Musical','Mystery','Thriller','Drama','Romanace','Action','Crime','Horror','Film-Noir','Fantasy','Sci-Fi','History']:
+    for ge in ['Comedy','Family','War','Adventure','Music','Musical','Mystery','Thriller','Drama','Romance','Action','Crime','Horror','Film-Noir','Fantasy','Sci-Fi','History']:
         genre = Genres(g_name=ge)
         genre.save()
 
 def add_languages():
     for lan in ['Hindi','Marathi','English','French','German','Spanish','Russian','Italian','Japanese','Chinese']:
         language = Languages(l_name=lan)
+        language.save()
+
+def add_prio_genres():
+    for ge in ["action", "adventure", "darkmovies", "drama", "fantasy", "musical", "romance", "scifi", "thriller", "comedy", "history"]:
+        genre = PriorityGenre(pgname=ge,pgval=0)
+        genre.save()
+
+def add_prio_languages():
+    for lan in ["hindi", "marathi", "english", "french", "german", "spanish", "russian", "italian", "japanese", "chinese"]:
+        language = PriorityLanguage(plname=lan,plval=0)
         language.save()
 
 def run():
@@ -56,11 +66,16 @@ def run():
     data = pd.read_csv('users/FinalMovies.csv')
     data = data.values.tolist()
 
-    #Movies.objects.all().delete()
+    Movies.objects.all().delete()
     Languages.objects.all().delete()
     Genres.objects.all().delete()
+    PriorityGenre.objects.all().delete()
+    PriorityLanguage.objects.all().delete()
 
     add_genres()
     add_languages()
+    add_prio_genres()
+    add_prio_languages()
+    save_movies(data)
     save_genres(data)
     save_languages(data)

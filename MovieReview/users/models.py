@@ -4,10 +4,8 @@ from django.db import models
 
 #user details 
 class User(models.Model):
-    u_id = models.CharField(max_length=30)
+    u_id = models.CharField(max_length=30,primary_key=True)
     u_name = models.CharField(max_length=64)
-
-class PriorityLanguage(models.Model):
     hindi   = models.IntegerField(default=0)
     marathi = models.IntegerField(default=0)
     english = models.IntegerField(default=0)
@@ -18,10 +16,6 @@ class PriorityLanguage(models.Model):
     italian = models.IntegerField(default=0)
     japanese=models.IntegerField(default=0)
     chinese = models.IntegerField(default=0)
-    users = models.ManyToManyField(User,blank=True,related_name="languages")
-
-
-class PriorityGenre(models.Model):
     comedy  = models.IntegerField(default=0)
     adventure= models.IntegerField(default=0)
     musical =  models.IntegerField(default=0)
@@ -33,7 +27,6 @@ class PriorityGenre(models.Model):
     fantasy = models.IntegerField(default=0)
     scifi   = models.IntegerField(default=0)
     history = models.IntegerField(default=0)
-    users = models.ManyToManyField(User,blank=True,related_name="genres")
 
 
 

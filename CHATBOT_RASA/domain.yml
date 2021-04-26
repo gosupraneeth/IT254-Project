@@ -30,7 +30,7 @@ slots:
 
 responses:
   utter_greet:
-  - text: Hey! Iam Bot. I can assist you to find movies. Please choose one of the following language of movies you wanted to go for?
+  - text: Hey! I am Bot. I can assist you to find movies. Please choose one of the following language of movies you wanted to go for?
 
   utter_select_mood:
   - text: I understand you like to go for {language} movies. Please enter what is your mood.
