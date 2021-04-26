@@ -11,6 +11,13 @@ Then run the below code to install the requirements for the project
 pip install -r requirements.txt
 ````
 
+## To load new data into database
+To load new data by overwriting the present data run the below code
+````
+python manage.py runscript load_data
+````
+NOTE: Don't run this to test the application only use it if you want to upload new data
+
 ## How to run chatbot
 
 To run the RASA Chatbot use the below command in **CHATBOT_RASA** directory
