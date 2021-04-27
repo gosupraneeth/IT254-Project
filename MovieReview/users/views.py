@@ -95,9 +95,12 @@ def getdata(request):
     genre=list()
     lang = list()
     #sort this properly to get accurate cards
-    genre = [str(ge).capitalize() for ge in GENRE if obj_val(user_prio,ge)>0]
-    lang = [str(l).capitalize() for l in LANGUAGE if obj_val(user_prio,l)>0]
-    cards = movies_data_prio(lang.copy(),genre.copy(),start,end)
+    genre = [(obj_val(user_prio,ge),str(ge).capitalize()) for ge in GENRE if obj_val(user_prio,ge)>0]
+    lang = [(obj_val(user_prio,l),str(l).capitalize()) for l in LANGUAGE if obj_val(user_prio,l)>0]
+    genr=[ge[1] for ge in sorted(genre,reverse=True)]
+    lan =[l[1] for l in sorted(lang,reverse=True)]
+    #print(genr,lan)
+    cards = movies_data_prio(lan.copy(),genr.copy(),start,end)
     return JsonResponse({
         "cards" : cards,
     })

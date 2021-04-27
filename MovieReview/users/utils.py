@@ -155,7 +155,7 @@ def movies_data_lg(language,gen,start,end):
         return []
 
 def movies_data_prio(lang,gen,start,end):
-    print(lang,gen)
+    #print(lang,gen)
     prio_s_f_cards = list()
     for i in range(max(len(lang),len(gen))):
         prio_cards =list()
@@ -168,7 +168,8 @@ def movies_data_prio(lang,gen,start,end):
             x = Languages.objects.get(l_name=lang[i]).movies.all()
         if i<len(gen):
             y = genre_callable(str(gen[i]))
-            x = x.intersection(y)
+            if(len(x.intersection(y))>1):
+                x = x.intersection(y)
         for obj in x:
             prio_card = dict()
             make_card_dict(prio_card,obj)
@@ -177,8 +178,8 @@ def movies_data_prio(lang,gen,start,end):
         sort_cards(prio_cards,prio_s_cards)
         for card in prio_s_cards:
             prio_s_f_cards.append(card)
+        #print(1,lang[i],len(prio_s_f_cards))
         if(end<=len(prio_s_f_cards)):
-            print(1)
             return prio_s_f_cards[start-1:end]
     for i in range(len(LANG)):
         if LANG[i] not in lang and GENRE2[i] not in gen:
