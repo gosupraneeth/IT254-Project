@@ -20,6 +20,11 @@ NOTE: Don't run this to test the application only use it if you want to upload n
 
 ## How to run chatbot
 
+Try to run the below command to avoid the version problems for the first time
+````
+rasa train
+````
+
 To run the RASA Chatbot use the below command in **CHATBOT_RASA** directory
 ````
 rasa run -m models --enable-api --cors "*" --debug
